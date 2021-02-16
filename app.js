@@ -3,6 +3,8 @@ const timerHourEl = document.querySelector(".timer__hour");
 const timerMinEl = document.querySelector(".timer__min");
 const timerSecEl = document.querySelector(".timer__sec");
 const buttonEl = document.querySelector("button");
+const loadingEl = document.getElementById("loading");
+const timerBodyEl = document.querySelector(".timer__body");
 
 var buttonSong = new Audio();
 buttonSong.src = "song.mp3";
@@ -11,7 +13,6 @@ buttonSong.src = "song.mp3";
 function toggleSong() {
   buttonEl.addEventListener("click", (event) => {
     buttonSong.paused ? buttonSong.play() : buttonSong.pause();
-
 })
 
 }
@@ -54,6 +55,10 @@ let timer = setInterval(function() {
 
 }, 1000)
 
+setTimeout(() => {
+  loadingEl.remove();
+  timerBodyEl.style.display = 'flex';
+}, 1000);
 
 
 
