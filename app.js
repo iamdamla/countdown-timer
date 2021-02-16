@@ -8,16 +8,14 @@ var buttonSong = new Audio();
 buttonSong.src = "song.mp3";
 
 
-
 function toggleSong() {
   buttonEl.addEventListener("click", (event) => {
     buttonSong.paused ? buttonSong.play() : buttonSong.pause();
-    
+
 })
-  
+
 }
 toggleSong();
-
 
 function getTimeDifference(start, end) {
   let milliseconds = Math.floor(end - start);
@@ -38,20 +36,25 @@ function getTimeDifference(start, end) {
   }
 }
 
-
-
 let timer = setInterval(function() {
   const startDate = new Date(); //Current day right now
-  const endDate = new Date("December, 31 2019 00:00:00");
+  const endDate = new Date( 'January, 1 2022 00:00:00');
 
   let timeDifferenceObj = getTimeDifference(startDate, endDate);
-  timerDayEl.textContent = timeDifferenceObj.rDays;
-  timerHourEl.textContent = timeDifferenceObj.rHours;
-  timerMinEl.textContent = timeDifferenceObj.rMinutes;
-  timerSecEl.textContent = timeDifferenceObj.rSeconds;
+  if(timeDifferenceObj.rDays === 0 && timeDifferenceObj.rHours === 0 && timeDifferenceObj.rMinutes === 0 && timeDifferenceObj.rSeconds === 0) {
+    clearInterval(timer);
+  } 
+    timerDayEl.textContent = timeDifferenceObj.rDays < 10 ? "0" + timeDifferenceObj.rDays : timeDifferenceObj.rDays;
+    
+    timerHourEl.textContent = timeDifferenceObj.rHours < 10 ? "0" + timeDifferenceObj.rHours : timeDifferenceObj.rHours;
+
+    timerMinEl.textContent = timeDifferenceObj.rMinutes < 10 ? "0" + timeDifferenceObj.rMinutes : timeDifferenceObj.rMinutes;
+
+    timerSecEl.textContent = timeDifferenceObj.rSeconds < 10 ? "0" + timeDifferenceObj.rSeconds : timeDifferenceObj.rSeconds;
+
 }, 1000)
 
 
 
 
-// console.log(new Date("April 26, 2018 07:30:00"));
+
